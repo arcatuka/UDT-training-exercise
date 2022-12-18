@@ -1,0 +1,65 @@
+@startuml Todolist
+
+entity User {
+    -id: ObjectId <<generated>>
+    --
+    name: String
+    password: String
+    role:String <<user | admin>>
+    email: String
+    gender: String
+    isDeleted: Boolean
+    isActive: Boolean
+    createdAt: Date
+    updated: Date
+
+}
+
+
+entity Todo {
+    -id: ObjectId <<generated>>
+    --
+    ~projectId: ObjectId
+    ~linkTodoId: ObjectId
+    ~createdById: ObjectId
+    ~assignedToId: ObjectId
+    --
+    name: String
+    status: Status <<Done| Processing| Pending>>
+    createdAt: Date
+    updated: Date
+
+}
+
+entity Project {
+    -id: ObjectId <<generated>>
+    --
+    name: String
+    status: String
+    isDeleted: Boolean
+    createdAt: Date
+    updated: Date
+}
+
+entity ProjectUser {
+    -id:ObjectId <<generated>>
+    --
+    ~userId:ObjectId
+    ~projectId:ObjectId
+}
+
+entity UserWithpassword {
+  -id:ObjectId <<generated>>
+  --
+  ~userId:ObjectId
+  --
+  password: String
+}
+
+Project ||--o{ Todo
+Todo }|--|| User
+Project ||--|{ ProjectUser
+User ||--o{ ProjectUser
+User ||--|| UserWithpassword
+Todo||--|| Todo
+@enduml

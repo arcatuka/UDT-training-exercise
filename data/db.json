@@ -1,0 +1,28 @@
+{
+  "ids": {
+    "User": 12,
+    "UserWithPassword": 9,
+    "Todo": 2
+  },
+  "models": {
+    "User": {
+      "6": "{\"name\":\"tuke\",\"password\":\"12312312\",\"roles\":\"admin\",\"email\":\"tkheng@gmail.com\",\"gender\":\"male\",\"isDeleted\":true,\"isActive\":true,\"createdAt\":\"2022-12-17T16:45:41.908Z\",\"updated\":\"2022-12-17T16:45:41.908Z\",\"id\":\"6\"}",
+      "7": "{\"name\":\"tk\",\"password\":\"$2a$10$d2xb826L49/JMXesxGJMn.wIjJbJ6OYad22yttf9srfqk16korIVe\",\"roles\":\"admin\",\"email\":\"tk@gmail.com\",\"gender\":\"male\",\"isDeleted\":true,\"isActive\":true,\"createdAt\":\"2022-12-17T16:45:41.908Z\",\"updated\":\"2022-12-17T16:45:41.908Z\",\"id\":\"7\"}",
+      "8": "{\"name\":\"tk\",\"password\":\"$2a$10$jUZNy/cd8a2xrhPNo4Asw.NYoq6chxD8q1NkVNOUDw6ObWXL3yz/2\",\"roles\":\"admin\",\"email\":\"tk@gmail.com\",\"gender\":\"male\",\"isDeleted\":true,\"isActive\":true,\"createdAt\":\"2022-12-17T17:37:09.455Z\",\"updated\":\"2022-12-17T17:37:09.455Z\",\"id\":\"8\"}",
+      "9": "{\"name\":\"kk\",\"password\":\"$2a$10$YRIib4Nk4A5p0yYX0QFN5.fBHhbRcYuC.G3ah/I2fiVvF46T0nMFi\",\"roles\":\"admin\",\"email\":\"kk@gmail.com\",\"gender\":\"male\",\"isDeleted\":true,\"isActive\":true,\"createdAt\":\"2022-12-18T17:06:09.666Z\",\"updated\":\"2022-12-18T17:06:09.666Z\",\"id\":\"9\"}",
+      "10": "{\"name\":\"k\",\"roles\":\"admin\",\"email\":\"tuka@gmail.com\",\"gender\":\"male\",\"isDeleted\":true,\"isActive\":true,\"createdAt\":\"2022-12-18T17:40:41.098Z\",\"updated\":\"2022-12-18T17:40:41.098Z\",\"id\":\"10\"}",
+      "11": "{\"name\":\"kk\",\"roles\":\"user\",\"email\":\"haha@gmail.com\",\"gender\":\"string\",\"isDeleted\":true,\"isActive\":true,\"createdAt\":\"2022-12-18T18:48:05.199Z\",\"updated\":\"2022-12-18T18:48:05.199Z\",\"id\":\"11\"}"
+    },
+    "UserWithPassword": {
+      "3": "{\"userId\":\"6\",\"password\":\"$2a$10$fNygrsk4C4hS3lReWfAbk.vxBqWDvl9TXDcn5tBuL4FmJUXIzfs/2\",\"id\":\"3\"}",
+      "4": "{\"userId\":\"7\",\"password\":\"$2a$10$d2xb826L49/JMXesxGJMn.wIjJbJ6OYad22yttf9srfqk16korIVe\",\"id\":\"4\"}",
+      "5": "{\"userId\":\"8\",\"password\":\"$2a$10$jUZNy/cd8a2xrhPNo4Asw.NYoq6chxD8q1NkVNOUDw6ObWXL3yz/2\",\"id\":\"5\"}",
+      "6": "{\"userId\":\"9\",\"password\":\"$2a$10$YRIib4Nk4A5p0yYX0QFN5.fBHhbRcYuC.G3ah/I2fiVvF46T0nMFi\",\"id\":\"6\"}",
+      "7": "{\"userId\":\"10\",\"password\":\"$2a$10$XF2HnPJ/m57AjdUfvKpvBensvIhWqBHloh.8tmhICJla8eH10vley\",\"id\":\"7\"}",
+      "8": "{\"userId\":\"11\",\"password\":\"$2a$10$5DF63QlY2NJ/29XFTw7OxeuqodIR0SZQ2pABXI.ddTSC6kUDTEIQy\",\"id\":\"8\"}"
+    },
+    "Todo": {
+      "1": "{\"createdById\":\"7\",\"name\":\"string\",\"status\":\"string\",\"createdAt\":\"2022-12-18T18:50:44.388Z\",\"updated\":\"2022-12-18T18:50:44.388Z\",\"id\":\"1\"}"
+    }
+  }
+}
