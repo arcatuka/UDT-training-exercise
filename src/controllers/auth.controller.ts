@@ -125,6 +125,14 @@ export class AuthController {
     newUserRequest: User,
   ): Promise<Response> {
     try {
+      const foundUser = await this.userRepository.findOne({
+        where: {email: newUserRequest.email},
+      });
+
+      if (foundUser) {
+        return {data: [], status: false, message: "Already have this user"};
+      }
+
       const password = await hash(newUserRequest.password, await genSalt());
       const savedUser = await this.userRepository.create(
         _.omit(newUserRequest, 'password'),
