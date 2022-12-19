@@ -20,7 +20,9 @@ import {
   ProjectUser,
 } from '../models';
 import {ProjectRepository} from '../repositories';
+import {authenticate} from '@loopback/authentication';
 
+@authenticate('jwt')
 export class ProjectProjectUserController {
   constructor(
     @repository(ProjectRepository) protected projectRepository: ProjectRepository,

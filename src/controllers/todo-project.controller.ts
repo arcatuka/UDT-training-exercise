@@ -11,7 +11,10 @@ import {
   Project,
 } from '../models';
 import {TodoRepository} from '../repositories';
+import {authenticate} from '@loopback/authentication';
 
+
+@authenticate('jwt')
 export class TodoProjectController {
   constructor(
     @repository(TodoRepository)

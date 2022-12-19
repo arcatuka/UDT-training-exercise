@@ -20,7 +20,9 @@ import {
   UserWithPassword
 } from '../models';
 import {UserRepository} from '../repositories';
+import {authenticate} from '@loopback/authentication';
 
+@authenticate('jwt')
 export class UserUserWithPasswordController {
   constructor(
     @repository(UserRepository) protected userRepository: UserRepository,

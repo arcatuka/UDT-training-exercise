@@ -19,7 +19,9 @@ import {
   Todo,
 } from '../models';
 import {TodoRepository} from '../repositories';
+import {authenticate} from '@loopback/authentication';
 
+@authenticate('jwt')
 export class TodoTodoController {
   constructor(
     @repository(TodoRepository) protected todoRepository: TodoRepository,

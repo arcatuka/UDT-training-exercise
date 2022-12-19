@@ -20,7 +20,9 @@ import {
   Todo,
 } from '../models';
 import {ProjectRepository} from '../repositories';
+import {authenticate} from '@loopback/authentication';
 
+@authenticate('jwt')
 export class ProjectTodoController {
   constructor(
     @repository(ProjectRepository) protected projectRepository: ProjectRepository,
