@@ -1,5 +1,5 @@
-import {Entity, hasMany, model, property} from '@loopback/repository';
-import {ProjectUser} from './project-user.model';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Todo} from './todo.model';
 
 @model()
 export class Project extends Entity {
@@ -18,26 +18,25 @@ export class Project extends Entity {
   @property({
     type: 'string',
   })
-  status: string;
+  status?: string;
 
   @property({
     type: 'boolean',
   })
-  isDeleted: boolean;
+  isDeleted?: boolean;
 
   @property({
     type: 'date',
   })
-  createdAt: string;
+  createdAt?: string;
 
   @property({
     type: 'date',
   })
-  updated: string;
+  updated?: string;
 
-
-  @hasMany(() => ProjectUser)
-  projectUsers: ProjectUser[];
+  @hasMany(() => Todo)
+  todos: Todo[];
 
   constructor(data?: Partial<Project>) {
     super(data);

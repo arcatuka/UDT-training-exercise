@@ -27,7 +27,7 @@ import {
   AuthorizationMetadata
 } from '@loopback/authorization';
 
-let checker = ''
+export let userRole = ''
 export async function basicAuthorization(
   authorizationCtx: AuthorizationContext,
   metadata: AuthorizationMetadata): Promise<AuthorizationDecision> {
@@ -49,7 +49,7 @@ export async function basicAuthorization(
   }
 
   console.log(currentuser.roles)
-  if (checker === "admin") {
+  if (userRole === "admin") {
     return AuthorizationDecision.ALLOW
   }
 
@@ -105,13 +105,7 @@ export class AuthController {
       },
     },
   })
-  // async signup(@requestBody() user: User) {
-  //   await validateCredentials(_.pick(user, ['email', 'password']));
-  //   user.password = await this.hasher.hashPassword(user.password)
-  //   const saveUser = await this.userRepository.create(user)
-  //   console.log(saveUser)
-  //   return _.omit(saveUser, 'password')
-  // }
+
   async signUp(
     @requestBody({
       content: {
@@ -178,8 +172,8 @@ export class AuthController {
       // convert a User object into a UserProfile object (reduced set of properties)
       const userProfile = this.userService.convertToUserProfile(user);
       //console.log(userProfile)
-      checker = userProfile.roles
-      //console.log(checker)
+      userRole = userProfile.roles
+      //console.log(userRole)
       // create a JSON Web Token based on the user profile
       const token = await this.jwtService.generateToken(userProfile);
       if (!user) throw new Error('Invalid user credentials');

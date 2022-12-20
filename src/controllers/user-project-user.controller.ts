@@ -16,22 +16,20 @@ import {
   requestBody,
 } from '@loopback/rest';
 import {
-  Project,
+  User,
   ProjectUser,
 } from '../models';
-import {ProjectRepository} from '../repositories';
-import {authenticate} from '@loopback/authentication';
+import {UserRepository} from '../repositories';
 
-@authenticate('jwt')
-export class ProjectProjectUserController {
+export class UserProjectUserController {
   constructor(
-    @repository(ProjectRepository) protected projectRepository: ProjectRepository,
+    @repository(UserRepository) protected userRepository: UserRepository,
   ) { }
 
-  @get('/projects/{id}/project-users', {
+  @get('/users/{id}/project-users', {
     responses: {
       '200': {
-        description: 'Array of Project has many ProjectUser',
+        description: 'Array of User has many ProjectUser',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(ProjectUser)},
@@ -44,38 +42,38 @@ export class ProjectProjectUserController {
     @param.path.string('id') id: string,
     @param.query.object('filter') filter?: Filter<ProjectUser>,
   ): Promise<ProjectUser[]> {
-    return this.projectRepository.projectUsers(id).find(filter);
+    return this.userRepository.projectUsers(id).find(filter);
   }
 
-  @post('/projects/{id}/project-users', {
+  @post('/users/{id}/project-users', {
     responses: {
       '200': {
-        description: 'Project model instance',
+        description: 'User model instance',
         content: {'application/json': {schema: getModelSchemaRef(ProjectUser)}},
       },
     },
   })
   async create(
-    @param.path.string('id') id: typeof Project.prototype.id,
+    @param.path.string('id') id: typeof User.prototype.id,
     @requestBody({
       content: {
         'application/json': {
           schema: getModelSchemaRef(ProjectUser, {
-            title: 'NewProjectUserInProject',
+            title: 'NewProjectUserInUser',
             exclude: ['id'],
-            optional: ['projectId']
+            optional: ['userId']
           }),
         },
       },
     }) projectUser: Omit<ProjectUser, 'id'>,
   ): Promise<ProjectUser> {
-    return this.projectRepository.projectUsers(id).create(projectUser);
+    return this.userRepository.projectUsers(id).create(projectUser);
   }
 
-  @patch('/projects/{id}/project-users', {
+  @patch('/users/{id}/project-users', {
     responses: {
       '200': {
-        description: 'Project.ProjectUser PATCH success count',
+        description: 'User.ProjectUser PATCH success count',
         content: {'application/json': {schema: CountSchema}},
       },
     },
@@ -92,13 +90,13 @@ export class ProjectProjectUserController {
     projectUser: Partial<ProjectUser>,
     @param.query.object('where', getWhereSchemaFor(ProjectUser)) where?: Where<ProjectUser>,
   ): Promise<Count> {
-    return this.projectRepository.projectUsers(id).patch(projectUser, where);
+    return this.userRepository.projectUsers(id).patch(projectUser, where);
   }
 
-  @del('/projects/{id}/project-users', {
+  @del('/users/{id}/project-users', {
     responses: {
       '200': {
-        description: 'Project.ProjectUser DELETE success count',
+        description: 'User.ProjectUser DELETE success count',
         content: {'application/json': {schema: CountSchema}},
       },
     },
@@ -107,6 +105,6 @@ export class ProjectProjectUserController {
     @param.path.string('id') id: string,
     @param.query.object('where', getWhereSchemaFor(ProjectUser)) where?: Where<ProjectUser>,
   ): Promise<Count> {
-    return this.projectRepository.projectUsers(id).delete(where);
+    return this.userRepository.projectUsers(id).delete(where);
   }
 }

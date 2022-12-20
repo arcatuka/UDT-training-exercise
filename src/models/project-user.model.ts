@@ -1,5 +1,6 @@
-import {Entity, model, property, belongsTo} from '@loopback/repository';
-import {User} from './user.model';
+import {belongsTo, Entity, model, property} from '@loopback/repository';
+import {User, UserWithRelations} from './user.model';
+import {Project} from './project.model';
 
 @model()
 export class ProjectUser extends Entity {
@@ -9,13 +10,11 @@ export class ProjectUser extends Entity {
     generated: true,
   })
   id: string;
-  @property({
-    type: 'string',
-  })
-  projectId: string;
-
   @belongsTo(() => User)
-  userId: string;
+  userId?: string;
+
+  @belongsTo(() => Project)
+  projectId: string;
 
   constructor(data?: Partial<ProjectUser>) {
     super(data);
@@ -24,6 +23,7 @@ export class ProjectUser extends Entity {
 
 export interface ProjectUserRelations {
   // describe navigational properties here
+  user?: UserWithRelations
 }
 
 export type ProjectUserWithRelations = ProjectUser & ProjectUserRelations;

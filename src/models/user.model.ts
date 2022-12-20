@@ -1,6 +1,7 @@
 import {Entity, hasMany, hasOne, model, property} from '@loopback/repository';
-import {Todo} from './todo.model';
-import {UserWithPassword} from './user-with-password.model';
+import {Todo, TodoWithRelations} from './todo.model';
+import {UserWithPassword, UserWithPasswordWithRelations} from './user-with-password.model';
+import {ProjectUser} from './project-user.model';
 
 @model()
 export class User extends Entity {
@@ -62,7 +63,10 @@ export class User extends Entity {
   @hasOne(() => UserWithPassword)
   userCredentials: UserWithPassword;
 
+
   // @hasOne(() => UserCred, {keyTo: 'user_id'})
+  @hasMany(() => ProjectUser)
+  projectUsers: ProjectUser[];
   // userCredentials: UserCred;
 
   @hasMany(() => Todo, {keyTo: 'createdById'})
@@ -75,6 +79,9 @@ export class User extends Entity {
 
 export interface UserRelations {
   // describe navigational properties here
+  UserWithPassword?: UserWithPasswordWithRelations
+  todo?: TodoWithRelations[]
 }
 
 export type UserWithRelations = User & UserRelations;
+

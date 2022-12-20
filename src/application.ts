@@ -5,6 +5,7 @@ import {
 import {AuthorizationComponent, AuthorizationDecision, AuthorizationOptions} from '@loopback/authorization';
 import {BootMixin} from '@loopback/boot';
 import {ApplicationConfig} from '@loopback/core';
+import {CronComponent} from '@loopback/cron';
 import {RepositoryMixin} from '@loopback/repository';
 import {RestApplication} from '@loopback/rest';
 import {
@@ -13,6 +14,7 @@ import {
 } from '@loopback/rest-explorer';
 import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
+import {cleanTodoBiding} from './cron/clean-task.cron';
 import {DbDataSource} from './datasources';
 import {PasswordHasherBindings, TokenServiceBindings} from './keys';
 import {UserRepository} from './repositories';
@@ -20,6 +22,7 @@ import {MySequence} from './sequence';
 import {BcryptHasher} from './services/hash.password';
 import {JWTService} from './services/jwt-service';
 import {MyUserService} from './services/user-service';
+
 // import {MyAuthorizationProvider} from './provider/MyAuthorizationProvider'
 
 export {ApplicationConfig};
@@ -50,15 +53,14 @@ export class Loopback4UdtApplication extends BootMixin(
 
 
     this.sequence(MySequence);
-
-
+    this.add(cleanTodoBiding)
+    this.component(CronComponent);
     this.component(AuthenticationComponent);
     this.component(JWTAuthenticationComponent);
     this.component(AuthorizationComponent);
     this.bind(PasswordHasherBindings.PASSWORD_HASHER).toClass(BcryptHasher);
     this.bind(PasswordHasherBindings.ROUNDS).to(10)
     this.bind(TokenServiceBindings.TOKEN_SERVICE).toClass(JWTService);
-
     this.bind(UserServiceBindings.USER_SERVICE).toClass(MyUserService);
     this.bind(UserServiceBindings.USER_REPOSITORY).toClass(UserRepository);
 

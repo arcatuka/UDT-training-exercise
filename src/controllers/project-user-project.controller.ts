@@ -7,24 +7,21 @@ import {
   getModelSchemaRef,
 } from '@loopback/rest';
 import {
-  Todo,
+  ProjectUser,
   Project,
 } from '../models';
-import {TodoRepository} from '../repositories';
-import {authenticate} from '@loopback/authentication';
+import {ProjectUserRepository} from '../repositories';
 
-
-@authenticate('jwt')
-export class TodoProjectController {
+export class ProjectUserProjectController {
   constructor(
-    @repository(TodoRepository)
-    public todoRepository: TodoRepository,
+    @repository(ProjectUserRepository)
+    public projectUserRepository: ProjectUserRepository,
   ) { }
 
-  @get('/todos/{id}/project', {
+  @get('/project-users/{id}/project', {
     responses: {
       '200': {
-        description: 'Project belonging to Todo',
+        description: 'Project belonging to ProjectUser',
         content: {
           'application/json': {
             schema: {type: 'array', items: getModelSchemaRef(Project)},
@@ -34,8 +31,8 @@ export class TodoProjectController {
     },
   })
   async getProject(
-    @param.path.string('id') id: typeof Todo.prototype.id,
+    @param.path.string('id') id: typeof ProjectUser.prototype.id,
   ): Promise<Project> {
-    return this.todoRepository.project(id);
+    return this.projectUserRepository.project(id);
   }
 }

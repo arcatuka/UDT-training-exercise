@@ -1,6 +1,6 @@
 import {belongsTo, Entity, hasOne, model, property} from '@loopback/repository';
-import {Project} from './project.model';
-import {User} from './user.model';
+import {Project, ProjectWithRelations} from './project.model';
+import {User, UserWithRelations} from './user.model';
 
 @model()
 export class Todo extends Entity {
@@ -34,6 +34,7 @@ export class Todo extends Entity {
   })
   createdAt?: string;
 
+
   @property({
     type: 'date',
   })
@@ -42,11 +43,12 @@ export class Todo extends Entity {
   @hasOne(() => Todo, {keyTo: 'linkTodoId'})
   todo: Todo;
 
-  @belongsTo(() => Project)
-  projectId: string;
 
   @belongsTo(() => User)
   assignedToId: string;
+
+  @belongsTo(() => Project)
+  projectId: string;
 
   constructor(data?: Partial<Todo>) {
     super(data);
@@ -55,6 +57,9 @@ export class Todo extends Entity {
 
 export interface TodoRelations {
   // describe navigational properties here
+  todo?: TodoWithRelations
+  project?: ProjectWithRelations
+  user?: UserWithRelations
 }
 
 export type TodoWithRelations = Todo & TodoRelations;

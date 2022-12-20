@@ -26,6 +26,7 @@ export class UserWithPassword extends Entity {
 
 export interface UserWithPasswordRelations {
   // describe navigational properties here
+  
 }
 
 export type UserWithPasswordWithRelations = UserWithPassword & UserWithPasswordRelations;
